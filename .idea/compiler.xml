@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="pyg-cart-web" />
+        <module name="pyg-portal-web" />
+        <module name="pyg-search-web" />
+        <module name="pyg-manager-web" />
+        <module name="pyg-solr-util" />
+        <module name="pyg-cart-interface" />
+        <module name="pyg-common" />
+        <module name="pyg-page-service" />
+        <module name="pyg-seckill-interface" />
+        <module name="pyg-user-web" />
+        <module name="pyg-search-interface" />
+        <module name="pyg-content-interface" />
+        <module name="pyg-pojo" />
+        <module name="pyg-seckill-service" />
+        <module name="pyg-pay-interface" />
+        <module name="pyg-page-interface" />
+        <module name="pyg-manager-service" />
+        <module name="pyg-manager-interface" />
+        <module name="pyg-page-web" />
+        <module name="pyg-user-interface" />
+        <module name="pyg-seckillgoods-interface" />
+        <module name="pyg-order-interface" />
+        <module name="pyg-seckillgoods-service" />
+        <module name="pyg-seckill-web" />
+        <module name="pyg-dao" />
+        <module name="pyg-order-service" />
+        <module name="pyg-user-service" />
+        <module name="pyg-shop-web" />
+        <module name="pyg-pay-service" />
+        <module name="pyg-search-service" />
+        <module name="pyg-content-service" />
+        <module name="pyg-cart-service" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

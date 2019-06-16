@@ -1,0 +1,9 @@
+top\ingxx\manager\service\impl\GoodsServiceImpl.class
+top\ingxx\manager\service\impl\ItemServiceImpl.class
+top\ingxx\manager\service\impl\SpecificationOptionServiceImpl.class
+top\ingxx\manager\service\impl\BrandServiceImpl.class
+top\ingxx\manager\service\impl\SellerServiceImpl.class
+top\ingxx\manager\service\impl\TypeTemplateServiceImpl.class
+top\ingxx\manager\service\impl\SpecificationServiceImpl.class
+top\ingxx\manager\service\impl\GoodsDescServiceImpl.class
+top\ingxx\manager\service\impl\ItemCatServiceImpl.class
