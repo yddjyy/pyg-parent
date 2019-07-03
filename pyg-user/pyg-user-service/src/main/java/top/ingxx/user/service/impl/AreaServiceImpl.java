@@ -50,7 +50,7 @@ public class AreaServiceImpl implements AreasService {
 
     @Override
     public PageResult findPage(TbAreas tbAreas, int pageNum, int pageSize) {
-        return null;
+        return  null;
     }
 
     @Override
