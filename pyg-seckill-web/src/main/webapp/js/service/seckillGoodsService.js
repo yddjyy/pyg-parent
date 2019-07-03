@@ -19,4 +19,9 @@ app.service('seckillGoodsService',function($http){
 	this.removeGoodsFromRedis=function(goodsid){
 		return $http.get('seckillGoods/removeGoodsFromRedis.do?goodsId='+goodsid);
 	}
+	//获取当前登录账号的收货地址
+	this.findAddressList=function(){
+		return $http.get('address/findListByLoginUser.do');
+	}
+
 });

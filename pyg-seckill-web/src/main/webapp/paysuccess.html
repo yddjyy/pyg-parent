@@ -10,16 +10,16 @@
 		
 	
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
+	<link rel="stylesheet" type="text/css" href="css/pages-getOrderInfo.css" />
     <link rel="stylesheet" type="text/css" href="css/pages-paysuccess.css" />
-    
-        <script type="text/javascript" src="plugins/angularjs/angular.min.js"> </script>
+	<script type="text/javascript" src="plugins/angularjs/angular.min.js"> </script>
 	<script type="text/javascript" src="js/base.js"> </script>
 	<script type="text/javascript" src="js/service/payService.js"> </script>
 	<script type="text/javascript" src="js/controller/payController.js"> </script>
     
 </head>
 
-	<body ng-app="pinyougou" ng-controller="payController">
+	<body ng-app="pinyougou" ng-controller="payController"  ng-init="findAddressList();getOutTraderNO();">
 		<!--head-->
 		<div class="top">
 			<div class="py-container">
@@ -58,10 +58,119 @@
 					<div class="paydetail">
 					<p>支付方式：支付宝支付</p>
 					<p>支付金额：￥{{getMoney()}}元</p>
-					<p class="button"><a href="myOrder.html" class="sui-btn btn-xlarge btn-danger">查看订单</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.html" class="sui-btn btn-xlarge ">继续购物</a></p>
+					<p class="button"><a href="myOrder.html" class="sui-btn btn-change btn-xlarge btn-danger">查看订单</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.html" class="sui-btn btn-change btn-xlarge ">继续购物</a> </p>
 				    </div>
 				</div>
 				
+			</div>
+			<div class="checkout py-container">
+				<div class="checkout-tit">
+					<h4 class="tit-txt">填写并核对订单信息</h4>
+				</div>
+				<div class="checkout-steps">
+					<!--收件人信息-->
+					<div class="step-tit">
+						<h5>收件人信息<span><a data-toggle="modal" data-target=".edit" data-keyboard="false" class="newadd">新增收货地址</a></span></h5>
+					</div>
+					<div class="step-cont">
+						<div class="addressInfo">
+							<ul class="addr-detail">
+								<li class="addr-item">
+
+									<div ng-repeat="address in addressList">
+										<div class="con name {{isSeletedAddress(address)?'selected':''}}"><a href="javascript:;" ng-click="selectAddress(address)">{{address.contact}}<span title="点击取消选择">&nbsp;</a></div>
+										<div class="con address">{{address.address}}<span>{{address.mobile}}</span>
+											<span class="base" ng-if="address.isDefault=='1'">默认地址</span>
+											<span class="edittext"><a data-toggle="modal" data-target=".edit" data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+
+								</li>
+
+
+							</ul>
+							<!--添加地址-->
+							<div  tabindex="-1" role="dialog" data-hasfoot="false" class="sui-modal hide fade edit">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" data-dismiss="modal" aria-hidden="true" class="sui-close">×</button>
+											<h4 id="myModalLabel" class="modal-title">添加收货地址</h4>
+										</div>
+										<div class="modal-body">
+											<form action="" class="sui-form form-horizontal">
+												<div class="control-group">
+													<label class="control-label" >收货人：</label>
+													<div class="controls">
+														<input type="text" class="input-medium" ng-model="addressEntiy.contact">
+													</div>
+												</div>
+												<div class="control-group">
+													<label class="control-label">地址：</label>
+													<div class="controls">
+														<table>
+															<tbody>
+															<tr>
+																<td>
+																	<select class="form-control" ng-model="entity.goods.category1Id" ng-options="item.id as item.name for item in provinceList"></select>
+																</td>
+																<td>
+																	<select class="form-control" ng-model="entity.goods.category1Id" ng-options="item.id as item.name for item in itemCat1List"></select>
+																</td>
+																<td>
+																	<select class="form-control" ng-model="entity.goods.category1Id" ng-options="item.id as item.name for item in itemCat1List"></select>
+																</td>
+															</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="control-group">
+													<label class="control-label" >详细地址：</label>
+													<div class="controls">
+														<input type="text" class="input-large" ng-model="addressEntiy.address">
+													</div>
+												</div>
+												<div class="control-group">
+													<label class="control-label" >联系电话：</label>
+													<div class="controls">
+														<input type="text" class="input-medium" ng-model="addressEntiy.mobile">
+													</div>
+												</div>
+
+												<div class="control-group">
+													<label class="control-label" >地址别名：</label>
+													<div class="controls">
+														<input type="text" class="input-medium" ng-model="addressEntiy.alias">
+													</div>
+													<div class="othername">
+														建议填写常用地址：<a href="#" class="sui-btn btn-default" ng-click="changeAlias('家里')">家里</a>　<a href="#" class="sui-btn btn-default"  ng-click="changeAlias('父母家')">父母家</a>　<a href="#" class="sui-btn btn-default"  ng-click="changeAlias('公司')">公司</a>
+													</div>
+												</div>
+
+											</form>
+
+
+										</div>
+										<div class="modal-footer">
+											<button type="button" data-ok="modal" class="sui-btn btn-primary btn-large" ng-click="addAddress()">确定</button>
+											<button type="button" data-dismiss="modal" class="sui-btn btn-default btn-large">取消</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--确认地址-->
+							<div class="submit">
+								<a class="sui-btn btn-danger btn-xlarge" ng-click="updateOrder()" >提交信息</a>
+							</div>
+						</div>
+
+						<div class="hr"></div>
+
+					</div>
+<!--					<div class="hr"></div>-->
+				</div>
 			</div>
 		</div>
 		<!-- 底部栏位 -->

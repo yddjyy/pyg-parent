@@ -1,14 +1,15 @@
 package top.ingxx.user.service.impl;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import top.ingxx.mapper.TbAddressMapper;
 import top.ingxx.pojo.TbAddress;
 import top.ingxx.pojo.TbAddressExample;
 import top.ingxx.untils.entity.PageResult;
 import top.ingxx.user.service.AddressService;
+
+import java.util.List;
 
 /**
  * 服务实现层
@@ -130,5 +131,4 @@ public class AddressServiceImpl implements AddressService {
 		criteria.andUserIdEqualTo(userId);
 		return addressMapper.selectByExample(example);
 	}
-	
 }

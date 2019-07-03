@@ -103,7 +103,7 @@ public class SeckillOrderController {
 	
 		/**
 	 * 查询+分页
-	 * @param brand
+	 * @param
 	 * @param page
 	 * @param rows
 	 * @return
@@ -134,6 +134,17 @@ public class SeckillOrderController {
 			return new Result(false, "提交订单失败");
 		}
 		
+	}
+
+	@RequestMapping("/updateOrder")
+	public Result updateOrder(@RequestBody TbSeckillOrder order){
+		System.out.println("orderid====="+order.getId()+order.getReceiver()+order.getReceiverAddress()+order.getReceiverMobile());
+		TbSeckillOrder tbSeckillOrder = seckillOrderService.findOne(order.getId());
+		tbSeckillOrder.setReceiverAddress(order.getReceiverAddress());
+		tbSeckillOrder.setReceiverMobile(order.getReceiverMobile());
+		tbSeckillOrder.setReceiver(order.getReceiver());
+		seckillOrderService.update(tbSeckillOrder);
+		return new Result(true,"更新成功");
 	}
 	
 }

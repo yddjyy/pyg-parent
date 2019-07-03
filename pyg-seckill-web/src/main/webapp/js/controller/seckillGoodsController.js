@@ -53,7 +53,7 @@ app.controller('seckillGoodsController' ,function($scope,$location,seckillGoodsS
 	
 	//提交订单 
 	$scope.submitOrder=function(){
-		seckillGoodsService.submitOrder( $scope.entity.id ).success(
+		seckillGoodsService.submitOrder($scope.entity.id ).success(
 			function(response){
 				if(response.success){//如果下单成功
 					alert("抢购成功，请在5分钟之内完成支付");
@@ -64,6 +64,41 @@ app.controller('seckillGoodsController' ,function($scope,$location,seckillGoodsS
 			}
 		);
 		
+	}
+	$scope.updateOrder=function(){
+		seckillGoodsService.updateOrder($scope.out_trade_no).success(
+			function(response){
+				console.log("seckillGoodsController层");
+			}
+		)
+	}
+	//获取当前用户的地址列表
+	$scope.findAddressList=function(){
+		seckillGoodsService.findAddressList().success(
+			function(response){
+				$scope.addressList=response;
+				for(var i=0;i<$scope.addressList.length;i++){
+					if($scope.addressList[i].isDefault=='1'){
+						$scope.address=$scope.addressList[i];
+						break;
+					}
+				}
+
+			}
+		);
+	}
+	//选择地址
+	$scope.selectAddress=function(address){
+		$scope.address=address;
+	}
+
+	//判断某地址对象是不是当前选择的地址
+	$scope.isSeletedAddress=function(address){
+		if(address==$scope.address){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 });

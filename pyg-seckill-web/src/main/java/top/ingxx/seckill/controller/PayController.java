@@ -41,11 +41,14 @@ public class PayController {
     public PygResult queryPayStatus(String out_trade_no){
         //1. 获取当前登录用户
         String username  = SecurityContextHolder.getContext().getAuthentication().getName();
-        PygResult pygResult = null;//作为标志位，当i>100时提示二维码超时，进行超时处理，方式循环无法退出，造成死循环。
-        int i = 0; //循环进行订单信息的查询，i
+        PygResult pygResult = null;
+        //作为标志位，当i>100时提示二维码超时，进行超时处理，方式循环无法退出，造成死循环。
+        int i = 0;
+        //循环进行订单信息的查询，i
         while (true){
           Map map =  aliPayService.queryPayStatus(out_trade_no);
-          if(map== null){ //发生异常时
+          if(map== null){
+              //发生异常时
              pygResult =  new PygResult(false,"支付发生错误");
              break;
           }

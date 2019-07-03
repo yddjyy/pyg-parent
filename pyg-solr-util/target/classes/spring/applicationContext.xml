@@ -9,6 +9,6 @@
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
-    <context:component-scan base-package="top.ingxx.solr.util"/>
+    <context:component-scan base-package="top.ingxx"/>
     
 </beans>
