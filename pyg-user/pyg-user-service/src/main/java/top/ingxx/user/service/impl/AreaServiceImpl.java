@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import top.ingxx.mapper.TbAreasMapper;
 import top.ingxx.pojo.TbAreas;
+import top.ingxx.pojo.TbAreasExample;
 import top.ingxx.untils.entity.PageResult;
 import top.ingxx.user.service.AreasService;
 
@@ -42,7 +43,9 @@ public class AreaServiceImpl implements AreasService {
 
     @Override
     public void delete(Long[] ids) {
-
+        for(Long id:ids){
+            tbAreasMapper.deleteByPrimaryKey(Integer.valueOf(String.valueOf(id)));
+        }
     }
 
     @Override
@@ -52,6 +55,9 @@ public class AreaServiceImpl implements AreasService {
 
     @Override
     public List<TbAreas> findListByCitiesId(String cities) {
-        return null;
+        TbAreasExample example=new TbAreasExample();
+        TbAreasExample.Criteria criteria = example.createCriteria();
+        criteria.andCityidEqualTo(cities);
+        return tbAreasMapper.selectByExample(example);
     }
 }
