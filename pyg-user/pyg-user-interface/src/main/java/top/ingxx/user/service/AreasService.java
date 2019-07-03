@@ -1,7 +1,6 @@
 package top.ingxx.user.service;
 
 import top.ingxx.pojo.TbAreas;
-import top.ingxx.pojo.TbCities;
 import top.ingxx.untils.entity.PageResult;
 
 import java.util.List;
@@ -44,7 +43,7 @@ public interface AreasService {
 	 * @param id
 	 * @return
 	 */
-	public TbCities findOne(Long id);
+	public TbAreas findOne(Long id);
 
 
 	/**
