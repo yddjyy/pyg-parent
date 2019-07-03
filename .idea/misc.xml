@@ -4,6 +4,8 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/pyg-cart-web" />
     <file type="web" url="file://$PROJECT_DIR$/pyg-cart/pyg-cart-service" />
+    <file type="web" url="file://$PROJECT_DIR$/pyg-comments-web" />
+    <file type="web" url="file://$PROJECT_DIR$/pyg-comments/pyg-comments-service" />
     <file type="web" url="file://$PROJECT_DIR$/pyg-content/pyg-content-service" />
     <file type="web" url="file://$PROJECT_DIR$/pyg-manager-web" />
     <file type="web" url="file://$PROJECT_DIR$/pyg-manager/pyg-manager-service" />
@@ -20,6 +22,9 @@
     <file type="web" url="file://$PROJECT_DIR$/pyg-shop-web" />
     <file type="web" url="file://$PROJECT_DIR$/pyg-user-web" />
     <file type="web" url="file://$PROJECT_DIR$/pyg-user/pyg-user-service" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
