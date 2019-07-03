@@ -103,7 +103,6 @@ app.controller('payController' ,function($scope ,$location,payService){
 	}
 	//动态添加别名
 	$scope.changeAlias=function (alias) {
-		console.log(alias);
 		$scope.addressEntiy.alias=alias;
 
 	}
@@ -113,8 +112,66 @@ app.controller('payController' ,function($scope ,$location,payService){
 		mobile:'',
 		alias:''
 	}
-	//添加收货地址
-	$scope.addAddress=function () {
-		console.log($scope.addressEntiy);
+	$scope.entityList={
+		provinceList:[],
+		cityList:[],
+		townList:[]
 	}
+	//新添加收货地址
+	$scope.addAddress=function () {
+		payService.addAddress($scope.addressEntiy).success(function(response){
+			if(response.success){
+				$scope.findAddressList();
+			}
+		})
+	}
+
+	//查找省
+	$scope.findAllProvince=function(){
+		payService.findAllProvince().success(function (response) {
+			$scope.provinceList=response;
+             for ( var i =0;i<response.length;i++){
+				 $scope.entityList.provinceList[response[i].provinceid]=response[i].province;
+			 }
+		})
+	}
+	$scope.findAllCity=function(){
+		payService.findAllCity().success(function (response) {
+			for ( var i =0;i<response.length;i++){
+				$scope.entityList.cityList[response[i].cityid]=response[i].city;
+			}
+		})
+	}
+	$scope.findAllTown=function(){
+		payService.findAllTown().success(function (response) {
+			for ( var i =0;i<response.length;i++){
+				$scope.entityList.townList[response[i].areaid]=response[i].area;
+			}
+		})
+	}
+	//查找城市
+	$scope.$watch('addressEntiy.provinceId', function (newValue, oldValue) {
+		if(newValue==null||newValue==''||newValue==undefined){
+			return;
+		}
+
+		payService.findCitesByProvinced(newValue).success(
+			function (data) {
+				$scope.cityList = data;
+
+			}
+		)
+	})
+	//查找区
+	$scope.$watch('addressEntiy.cityId', function (newValue, oldValue) {
+		if(newValue==null||newValue==''||newValue==undefined){
+			return;
+		}
+
+		payService.findAreaByCityId(newValue).success(
+			function (data) {
+				$scope.areaList = data;
+			}
+		)
+	})
 });

@@ -19,7 +19,7 @@
     
 </head>
 
-	<body ng-app="pinyougou" ng-controller="payController"  ng-init="findAddressList();getOutTraderNO();">
+	<body ng-app="pinyougou" ng-controller="payController"  ng-init="findAddressList();getOutTraderNO();findAllProvince();findAllCity();findAllTown()">
 		<!--head-->
 		<div class="top">
 			<div class="py-container">
@@ -79,7 +79,7 @@
 
 									<div ng-repeat="address in addressList">
 										<div class="con name {{isSeletedAddress(address)?'selected':''}}"><a href="javascript:;" ng-click="selectAddress(address)">{{address.contact}}<span title="点击取消选择">&nbsp;</a></div>
-										<div class="con address">{{address.address}}<span>{{address.mobile}}</span>
+										<div class="con address">{{entityList.provinceList[address.provinceId]}} {{entityList.cityList[address.cityId]}} {{entityList.townList[address.townId]}} {{address.address}}<span>{{address.mobile}}</span>
 											<span class="base" ng-if="address.isDefault=='1'">默认地址</span>
 											<span class="edittext"><a data-toggle="modal" data-target=".edit" data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
 										</div>
@@ -113,13 +113,13 @@
 															<tbody>
 															<tr>
 																<td>
-																	<select class="form-control" ng-model="entity.goods.category1Id" ng-options="item.id as item.name for item in provinceList"></select>
+																	<select class="form-control" ng-model="addressEntiy.provinceId" ng-options="item.provinceid as item.province for item in provinceList"></select>
 																</td>
 																<td>
-																	<select class="form-control" ng-model="entity.goods.category1Id" ng-options="item.id as item.name for item in itemCat1List"></select>
+																	<select class="form-control" ng-model="addressEntiy.cityId" ng-options="item.cityid as item.city for item in cityList"></select>
 																</td>
 																<td>
-																	<select class="form-control" ng-model="entity.goods.category1Id" ng-options="item.id as item.name for item in itemCat1List"></select>
+																	<select class="form-control" ng-model="addressEntiy.townId" ng-options="item.areaid as item.area for item in areaList"></select>
 																</td>
 															</tr>
 															</tbody>

@@ -6,10 +6,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.ingxx.pojo.TbAddress;
+import top.ingxx.pojo.TbAreas;
+import top.ingxx.pojo.TbCities;
+import top.ingxx.pojo.TbProvinces;
 import top.ingxx.untils.entity.PageResult;
 import top.ingxx.untils.entity.PygResult;
 import top.ingxx.user.service.AddressService;
+import top.ingxx.user.service.AreasService;
+import top.ingxx.user.service.CitysService;
+import top.ingxx.user.service.ProvincesService;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +30,14 @@ public class AddressController {
 
 	@Reference
 	private AddressService addressService;
-	
+
+	@Reference
+	private ProvincesService provincesService;
+
+	@Reference
+	private CitysService citysService;
+	@Reference
+	private AreasService areasService;
 	/**
 	 * 返回全部列表
 	 * @return
@@ -51,7 +65,11 @@ public class AddressController {
 	@RequestMapping("/add")
 	public PygResult add(@RequestBody TbAddress address){
 		try {
+			address.setIsDefault("0");//设置非默认
+			address.setCreateDate(new Date());//设置添加时间
+			address.setUserId(SecurityContextHolder.getContext().getAuthentication().getName());//设置用于id
 			addressService.add(address);
+
 			return new PygResult(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -119,5 +137,29 @@ public class AddressController {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		return addressService.findListByUserId(username);		
 	}
-	
+
+	//获取所有省的列表
+	@RequestMapping("/findAllProvince")
+	public List<TbProvinces> findAllProvince(){
+		return provincesService.findAll();
+	}
+
+	//根据省的id查找城市
+	@RequestMapping("/findListByProvinceidId")
+	public List<TbCities> findListByProvinceidId(String provinceid){
+       return citysService.findListByProvinceidId(provinceid);
+	}
+	@RequestMapping("/findAllCity")
+	public List<TbCities> findAllCity(){
+		return citysService.findAll();
+	}
+	//根据城市id查询区
+	@RequestMapping("/findListByCitiesId")
+	public List<TbAreas> findListByCitiesId(String citesid){
+		return areasService.findListByCitiesId(citesid);
+	}
+	@RequestMapping("/findAllTown")
+	public List<TbAreas> findAllTown(){
+		return areasService.findAll();
+	}
 }

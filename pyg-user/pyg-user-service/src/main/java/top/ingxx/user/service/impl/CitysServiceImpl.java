@@ -1,5 +1,6 @@
 package top.ingxx.user.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import top.ingxx.untils.entity.PageResult;
 import top.ingxx.user.service.CitysService;
 
 import java.util.List;
-
+@Service
 public class CitysServiceImpl implements CitysService {
     @Autowired
     TbCitiesMapper tbCitiesMapper;
