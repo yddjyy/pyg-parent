@@ -1,6 +1,7 @@
 top\ingxx\mapper\TbSpecificationMapper.class
 top\ingxx\mapper\TbItemCatMapper.class
 top\ingxx\mapper\TbPayLogMapper.class
+top\ingxx\mapper\TbCommentsMapper.class
 top\ingxx\mapper\TbAreasMapper.class
 top\ingxx\mapper\TbSeckillGoodsMapper.class
 top\ingxx\mapper\TbUserMapper.class

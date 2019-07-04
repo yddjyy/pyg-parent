@@ -1,20 +1,21 @@
 package top.ingxx.manager.service;
-import java.util.List;
-import top.ingxx.pojo.TbItem;
-
+import top.ingxx.pojo.TbSeckillGoods;
 import top.ingxx.untils.entity.PageResult;
+
+import java.util.List;
+
 /**
  * 服务层接口
  * @author Administrator
  *
  */
-public interface ItemService {
+public interface SeckillGoodsService {
 
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
-	public List<TbItem> findAll();
+	public List<TbSeckillGoods> findAll();
 	
 	
 	/**
@@ -27,21 +28,21 @@ public interface ItemService {
 	/**
 	 * 增加
 	*/
-	public void add(TbItem item);
-	
-	
+	public void add(TbSeckillGoods seckillGoods);
+
+
 	/**
 	 * 修改
 	 */
-	public void update(TbItem item);
-	
+	public void update(TbSeckillGoods seckillGoods);
+
 
 	/**
 	 * 根据ID获取实体
 	 * @param id
 	 * @return
 	 */
-	public TbItem findOne(Long id);
+	public TbSeckillGoods findOne(Long id);
 	
 	
 	/**
@@ -56,12 +57,11 @@ public interface ItemService {
 	 * @param pageSize 每页记录数
 	 * @return
 	 */
-	public PageResult findPage(TbItem item, int pageNum, int pageSize);
+	public PageResult findPage(TbSeckillGoods seckillGoods, int pageNum, int pageSize);
 
 	/**
-	 * 查询商品通过GoodsId
-	 * @param id
-	 * @return
+	 *
+	 * @param seckillGoodsList
 	 */
-	public List<TbItem> findItemByGoodsId(Long id);
+	public void addSeckillGoodsList(List<TbSeckillGoods> seckillGoodsList);
 }

@@ -45,6 +45,7 @@ top\ingxx\pojo\TbContentCategoryExample$Criteria.class
 top\ingxx\pojo\TbPayLogExample$Criteria.class
 top\ingxx\pojo\TbProvincesExample$Criterion.class
 top\ingxx\pojo\TbGoodsDescExample.class
+top\ingxx\pojo\TbBrandExample$GeneratedCriteria.class
 top\ingxx\pojo\TbSpecificationExample$GeneratedCriteria.class
 top\ingxx\pojo\TbSellerExample.class
 top\ingxx\pojo\TbAddressExample$Criterion.class
@@ -80,6 +81,7 @@ top\ingxx\pojo\TbGoodsDescExample$Criterion.class
 top\ingxx\pojo\TbGoodsExample$Criterion.class
 top\ingxx\pojo\TbAddressExample$GeneratedCriteria.class
 top\ingxx\pojo\TbGoodsDescExample$GeneratedCriteria.class
+top\ingxx\pojo\TbBrandExample.class
 top\ingxx\pojo\TbSeckillGoodsExample$GeneratedCriteria.class
 top\ingxx\pojo\TbComments.class
 top\ingxx\pojo\TbSeller.class

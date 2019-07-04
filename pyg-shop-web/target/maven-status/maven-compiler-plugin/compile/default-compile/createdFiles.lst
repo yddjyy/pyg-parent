@@ -1,7 +1,9 @@
-top\ingxx\shop\controller\LoginController.class
 top\ingxx\shop\controller\TypeTemplateController.class
+top\ingxx\shop\controller\SellerController.class
+top\ingxx\shop\controller\ItemCatController.class
+top\ingxx\shop\controller\LoginController.class
 top\ingxx\shop\controller\GoodsController.class
 top\ingxx\shop\controller\UploadController.class
-top\ingxx\shop\controller\SellerController.class
+top\ingxx\shop\controller\ItemController.class
 top\ingxx\shop\service\UserDetailsServiceImpl.class
-top\ingxx\shop\controller\ItemCatController.class
+top\ingxx\shop\controller\BrandController.class

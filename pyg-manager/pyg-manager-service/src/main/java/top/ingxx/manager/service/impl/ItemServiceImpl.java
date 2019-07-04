@@ -133,5 +133,14 @@ public class ItemServiceImpl implements ItemService {
 		Page<TbItem> page= (Page<TbItem>)itemMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+
+	//按goodsid查找商品
+	@Override
+	public List<TbItem> findItemByGoodsId(Long id) {
+		TbItemExample tbItemExample = new TbItemExample();
+		Criteria criteria = tbItemExample.createCriteria();
+		criteria.andGoodsIdEqualTo(id);
+		return itemMapper.selectByExample(tbItemExample);
+	}
 }

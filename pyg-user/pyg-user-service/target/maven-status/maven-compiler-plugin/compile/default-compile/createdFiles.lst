@@ -1,3 +1,6 @@
 top\ingxx\user\service\impl\UserServiceImpl.class
+top\ingxx\user\service\impl\ProvincesServiceImpl.class
+top\ingxx\user\service\impl\AreaServiceImpl.class
 top\ingxx\user\service\impl\UserOrderServiceImpl.class
 top\ingxx\user\service\impl\AddressServiceImpl.class
+top\ingxx\user\service\impl\CitysServiceImpl.class

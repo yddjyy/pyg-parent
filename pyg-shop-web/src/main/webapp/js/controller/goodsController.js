@@ -1,13 +1,22 @@
 //控制层
-app.controller('goodsController', function ($scope,$http, $controller, $location, goodsService, uploadService, itemCatService, typeTemplateService) {
+app.controller('goodsController', function ($scope,$http, $controller, $location, goodsService, uploadService, itemCatService, typeTemplateService, brandService,itemService,addSeckillGoodsService) {
 
     $controller('baseController', {$scope: $scope});//继承
 
-    //读取列表数据绑定到表单中  
+    //读取列表数据绑定到表单中
     $scope.findAll = function () {
         goodsService.findAll().success(
             function (response) {
                 $scope.list = response;
+            }
+        );
+    }
+
+    //通过商品id查找
+    $scope.findItemByGoodsId=function(id){
+        itemService.findItemByGoodsId(id).success(
+            function (response) {
+                $scope.itemList=response;
             }
         );
     }
@@ -18,6 +27,7 @@ app.controller('goodsController', function ($scope,$http, $controller, $location
             function (response) {
                 $scope.list = response.rows;
                 $scope.paginationConf.totalItems = response.total;//更新总记录数
+
             }
         );
     }
@@ -87,7 +97,17 @@ app.controller('goodsController', function ($scope,$http, $controller, $location
     }
 
     $scope.searchEntity = {};//定义搜索对象
-
+    $scope.seckillEntity={};//定义秒杀对象
+    $scope.insertValue=function(id,goodsname,one,two,three,brand){
+        console.log(id,goodsname,one,two,three,brand);
+        $scope.seckillEntity.id=id;
+        $scope.seckillEntity.goodsName=goodsname;
+        $scope.seckillEntity.one=one;
+        $scope.seckillEntity.two=two;
+        $scope.seckillEntity.three=three;
+        $scope.seckillEntity.brand=brand;
+        $scope.findItemByGoodsId(id);
+    }
     //搜索
     $scope.search = function (page, rows) {
         goodsService.search(page, rows, $scope.searchEntity).success(
@@ -142,6 +162,9 @@ app.controller('goodsController', function ($scope,$http, $controller, $location
     }
     //查找二级分类
     $scope.$watch('entity.goods.category1Id', function (newValue, oldValue) {
+        if(newValue==undefined){
+            return;
+        }
         itemCatService.findByParentId(newValue).success(
             function (data) {
                 $scope.itemCat2List = data;
@@ -150,6 +173,9 @@ app.controller('goodsController', function ($scope,$http, $controller, $location
     })
     //查找三级分类
     $scope.$watch('entity.goods.category2Id', function (newValue, oldValue) {
+        if(newValue==undefined){
+            return;
+        }
         itemCatService.findByParentId(newValue).success(
             function (data) {
                 $scope.itemCat3List = data;
@@ -159,6 +185,9 @@ app.controller('goodsController', function ($scope,$http, $controller, $location
 
     //读取模板ID
     $scope.$watch('entity.goods.category2Id', function (newValue, oldValue) {
+        if(newValue==undefined){
+            return;
+        }
         itemCatService.findOne(newValue).success(
             function (data) {
                 $scope.entity.goods.typeTemplateId = data.typeId;
@@ -168,6 +197,9 @@ app.controller('goodsController', function ($scope,$http, $controller, $location
 
     //读取到模板变化后 读取品牌列表
     $scope.$watch('entity.goods.typeTemplateId', function (newValue, oldValue) {
+        if(newValue==undefined){
+            return;
+        }
         typeTemplateService.findOne(newValue).success(
             function (data) {
                 $scope.typeTemplate = data;
@@ -181,6 +213,7 @@ app.controller('goodsController', function ($scope,$http, $controller, $location
         );
         //读取规格
         typeTemplateService.findSpecList(newValue).success(
+
             function (data) {
                 $scope.specList = data;
             }
@@ -235,12 +268,24 @@ app.controller('goodsController', function ($scope,$http, $controller, $location
     $scope.status = ['未审核', '已审核', '审核未通过', '已关闭'];
 
     $scope.itemCatList = [];
+    $scope.brandList=[];
     //查询商品分类
     $scope.findItemCatList = function () {
         itemCatService.findAll().success(
             function (data) {
                 for (var i = 0; i < data.length; i++) {
                     $scope.itemCatList[data[i].id] = data[i].name;
+                }
+            }
+        )
+    }
+    //查询品牌分类
+    $scope.findBrandList = function () {
+        brandService.findAll().success(
+            function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    //+"("+data[i].firstChar+")"
+                    $scope.brandList[data[i].id] = data[i].name;
                 }
             }
         )
@@ -260,4 +305,10 @@ app.controller('goodsController', function ($scope,$http, $controller, $location
             return false;
         }
     }
-});	
+
+    //添加秒杀商品
+    $scope.addSeckillGoodsList=function(seckillGoodsList){
+
+
+    }
+});
